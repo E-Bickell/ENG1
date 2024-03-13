@@ -21,15 +21,15 @@ public class Player {
     }
 
     public void interact(){
-
+        
     }
 
     public void eat(){
-
+        hunger += 10;
     }
 
     public void sleep() {
-
+        energy += 10;
     }
 
     public void takeExam(){
