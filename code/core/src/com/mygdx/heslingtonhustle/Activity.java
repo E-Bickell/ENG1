@@ -16,11 +16,16 @@ public class Activity {
         energyCost=energy;
      }
 
-     boolean doActivity(ActivityTracker tracker,Day day, Player player){
+     boolean doActivity(Day day, Player player){
         if (!checkValid(day,player)){
             return false;
         }
-        tracker.addActivity(type);
+       // recheck how this will be implemented
+        player.tracker.addActivity(type);
+        //update with actucal Player method
+        player.energyUpdate(energyCost);
+        //again check once day found
+        day.timeSkip(timeCost);
         return true;
      }
 
@@ -29,7 +34,9 @@ public class Activity {
         if ((day.currentHour()-timeCost>=0) && (player.energyCheck()-energyCost>=0)){
             return true;
         }
-        else{return false;}
+        else{
+             return false;
+        }
      }
     
 }
