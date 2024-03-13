@@ -1,5 +1,6 @@
 package com.mygdx.heslingtonhustle;
 
+
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -31,4 +32,3 @@ public class ActivityTracker {
 }
 
     
-
