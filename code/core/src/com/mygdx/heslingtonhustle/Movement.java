@@ -1,4 +1,8 @@
 package com.mygdx.heslingtonhustle;
 
-public class Movement {
+import java.awt.Point;
+
+public class Movement{
+    Point CurrentPosition;
+
 }
