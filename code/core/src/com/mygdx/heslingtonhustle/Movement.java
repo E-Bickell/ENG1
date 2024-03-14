@@ -1,29 +1,8 @@
 package com.mygdx.heslingtonhustle;
 
-public class Movement {
-    int x;
-    int y;
+import java.awt.Point;
 
-    public Movement(){
-        int x = 0;
-        int y = 0;
-    }
+public class Movement{
+    Point CurrentPosition;
 
-    public Movement(int X, int Y) {
-        x = X;
-        y = Y;
-    }
-
-    public void Move(int X, int Y) {
-        x += X;
-        y += Y;
-    }
-
-    public void calculatePath() {
-
-    }
-
-    public void checkObstacle() {
-
-    }
 }
