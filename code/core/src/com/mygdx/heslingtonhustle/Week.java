@@ -27,13 +27,13 @@ public class Week {
 
 
     //Assuming checkWeek() is used to get the number of days left in the week before the end of the game?
-    private int checkWeek(){
+    public int checkWeek(){
         daysLeft = weekLength - (currentWeekDay+1);
         return daysLeft;
     }
 
 
-    private boolean endWeek() {
+    public boolean endWeek() {
         if(checkWeek() == 0) {
             weekEnd = true;
         }
@@ -46,7 +46,7 @@ public class Week {
         of size weekLength(7), and use a loop to create all the days at once, as they should be independently accessed.
         Creating all the days at the start and storing them should not be an issue for performance.
      */
-    private void nextDay() {
+    public void nextDay() {
         if(!endWeek()) {
             currentWeekDay += 1;
         }
