@@ -1,11 +1,12 @@
 package com.mygdx.heslingtonhustle;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-public class HeslingtonHustle extends ApplicationAdapter {
+public class HeslingtonHustle extends Game {
 	SpriteBatch batch;
 	Texture img;
 	
@@ -13,6 +14,7 @@ public class HeslingtonHustle extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
+		this.setScreen(new Map(this));
 	}
 
 	@Override

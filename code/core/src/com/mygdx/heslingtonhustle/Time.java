@@ -18,7 +18,7 @@ public class Time {
         week = new Week();
     }
 
-    private void timeSkip() {
+    public void timeSkip() {
 
     }
 
@@ -35,7 +35,7 @@ public class Time {
         float elapsedTimeMin = elapsedTimeMillis/(60*1000F);
 
      */
-    private void displayTime() {
+    public void displayTime() {
 
     }
 
