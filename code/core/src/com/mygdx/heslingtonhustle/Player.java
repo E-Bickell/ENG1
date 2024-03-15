@@ -39,15 +39,7 @@ public class Player {
         return energy;
     }
 
-    public void energyDeplete(int x){
-        energy -= x;
-    }
-
-    public void energyBoost(int x){
-        energy += x;
-    }
-
-    public void energyChange(){
-
+    public void energyChange(int amount) {
+        energy += amount;
     }
 }
