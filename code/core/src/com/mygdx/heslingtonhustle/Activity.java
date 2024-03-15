@@ -12,7 +12,9 @@ public class Activity {
         name=activityName;
         type=actvityType;
         description=activityDesc;
+          //positive for amount of time takes
         timeCost=time;
+          //negitive for how much energy needs to be changed by
         energyCost=energy;
      }
 
@@ -21,8 +23,7 @@ public class Activity {
             return false;
         }
         player.tracker.addActivity(type);
-        //update with actucal Player method still can't find player class
-        player.energyUpdate(energyCost);
+        player.energyChange(energyCost);
         //increment time- sub par but functional currently it's fine
         for i in range(0,timeCost){
              day.nextHour();
@@ -31,7 +32,6 @@ public class Activity {
      }
 
      boolean checkValid(Day day, Player player){
-        // player to be fixed when they exist
         if ((day.checkHour()+timeCost<=24) && (player.energyCheck()-energyCost>=0)){
             return true;
         }
