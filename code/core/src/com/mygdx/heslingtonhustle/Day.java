@@ -61,6 +61,7 @@ public class Day {
         hours += 1;
         //currentHour += 'Activity'.getTimeCost();
         //hours += 'Activity'.getTimeCost();
+        //why not just let activity pass timeCost to the funciton
     }
 
     //Returns how many hours are left, useful if for example an activity takes 2 hours, but only 1 hour is left until sleep
