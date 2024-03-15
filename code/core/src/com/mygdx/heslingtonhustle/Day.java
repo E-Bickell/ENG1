@@ -33,7 +33,7 @@ public class Day {
         currentHour seems irrelevant right now, maybe useful if we want to display the time of day (not real-world time elapsed)
      */
 
-    private int checkHour() {
+    public int checkHour() {
 
         return currentHour;
     }
@@ -43,7 +43,7 @@ public class Day {
         Alternatively endOfDay returns nothing, and merely sets boolean to true, which the Week class must then use a getter to retrieve -
         in order to check if it should end the current day and call nextDay().
      */
-    private boolean endOfDay() {
+    public boolean endOfDay() {
         if(hours == dayLength) {
             dayEnd = true;
         }
@@ -53,17 +53,19 @@ public class Day {
 
     /*  Assuming nextHour() should increment currentHour by 1, meaning each activity only takes 1 hour
         However, I can see in Activity class that there is a variable timeCost for activities, so it makes more sense
-        for nextHour() to use a getter from Activity object to get the timeCost and add that to currentHour
+        for nextHour() to use a getter from Activity object to get the timeCost and take it as a parameter to add that to
+        currentHour
      */
-    private void nextHour() {
+    public void nextHour() {
         currentHour += 1;
         hours += 1;
         //currentHour += 'Activity'.getTimeCost();
         //hours += 'Activity'.getTimeCost();
+        //why not just let activity pass timeCost to the funciton
     }
 
     //Returns how many hours are left, useful if for example an activity takes 2 hours, but only 1 hour is left until sleep
-    private int getHoursLeft() {
+    public int getHoursLeft() {
         hoursLeft = dayLength - hours;
         return hoursLeft;
     }
