@@ -22,7 +22,6 @@ public class GameScreen implements Screen {
         playerSprite = new Texture(Gdx.files.internal("Char.png"));
         mapSprite = new Texture(Gdx.files.internal("Map.png"));
         player = new Player();
-        map = new Map();
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);

@@ -25,14 +25,14 @@ public class Activity {
         player.tracker.addActivity(type);
         player.energyChange(energyCost);
         //increment time- sub par but functional currently it's fine
-        for i in range(0,timeCost){
+        for (int i = 0; i < timeCost; i++){
              day.nextHour();
         }
         return true;
      }
 
      boolean checkValid(Day day, Player player){
-        if ((day.checkHour()+timeCost<=24) && (player.energyCheck()-energyCost>=0)){
+        if ((day.checkHour()+timeCost<=16) && (player.energyCheck()-energyCost>=0)){
             return true;
         }
         else{

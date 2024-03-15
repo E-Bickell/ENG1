@@ -5,7 +5,7 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 
 public class ActivityTracker {
-    private ActivityTracker tracker;
+    private static ActivityTracker tracker;
     Dictionary<String, Integer> done= new Hashtable<>();
 
     private ActivityTracker(){
@@ -15,7 +15,7 @@ public class ActivityTracker {
         done.put("sleep",0);
 
     }
-    public static ActivityTracker getActivityTracker{
+    public static ActivityTracker getActivityTracker(){
         if (tracker==null){
             tracker= new ActivityTracker();
         }

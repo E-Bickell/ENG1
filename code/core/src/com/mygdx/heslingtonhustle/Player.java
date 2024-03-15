@@ -1,42 +1,59 @@
 package com.mygdx.heslingtonhustle;
 
+import java.awt.*;
+
 public class Player {
     String name;
     int energy;
     int hunger;
-    Movement move;
+    Point pos;
+    ActivityTracker tracker;
 
+    // initialises Player if no attributes are given
     public Player() {
         name = "TestPerson";
         energy = 10;
         hunger = 10;
-        move = new Movement();
+        pos = new Point(0,0);
+        tracker = ActivityTracker.getActivityTracker();
     }
 
-    public Player(String Name, int Energy, int Hunger, int X, int Y) {
-        name = Name;
-        energy = Energy;
-        hunger = Hunger;
+    // initialises Player if attributes are given
+    public Player(String name, int energy, int hunger, int x, int y) {
+        this.name = name;
+        this.energy = energy;
+        this.hunger = hunger;
+        this.pos = new Point(x, y);
+        this.tracker = ActivityTracker.getActivityTracker();
     }
 
-    public void interact(){
-        
+    // Player interacts with a building
+    public void interact(Buildings building, Week week){
+        if (building.activity.checkValid(week.weekDays[week.currentWeekDay],this)){
+            building.interact();
+        }
     }
 
+    // Player eats
     public void eat(){
         hunger += 10;
+        tracker.addActivity("eat");
     }
 
-    public void sleep() {
+    // Player sleeps
+    public void sleep(Week week) {
         energy += 10;
+        tracker.addActivity("sleep");
+        week.nextDay();
     }
 
-    public void takeExam(){
-
-    }
-
+    // Returns how much energy the player currently has
     public int energyCheck(){
         return energy;
+    }
+
+    public int hungerCheck(){
+        return hunger;
     }
 
     public void energyChange(int amount) {

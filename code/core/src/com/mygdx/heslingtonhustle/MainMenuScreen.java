@@ -30,11 +30,11 @@ public class MainMenuScreen implements Screen {
 
         game.batch.begin();
         game.font.draw(game.batch, "Welcome to Heslington Hustle", 100, 150);
-        game.font.draw(game.batch, "Press Enter To Begin", 100, 100);
+        game.font.draw(game.batch, "Press Space To Begin", 100, 100);
         game.batch.end();
 
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE)){
-            game.setScreen(new GameScreen(game));
+            game.setScreen(new Map(game));
             dispose();
         }
     }

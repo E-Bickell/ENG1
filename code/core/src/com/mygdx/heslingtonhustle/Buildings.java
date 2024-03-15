@@ -7,7 +7,7 @@ public class Buildings {
     String type;
     Point position;
     String activityType;
-    Activities activity;
+    Activity activity;
 
     public Buildings(String buildingName, String buildingType, Point buildingPos, String buildingActivity) {
         name = buildingName;
