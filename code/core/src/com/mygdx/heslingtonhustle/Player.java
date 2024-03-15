@@ -17,7 +17,6 @@ public class Player {
         name = Name;
         energy = Energy;
         hunger = Hunger;
-        move = new Movement(X, Y);
     }
 
     public void interact(){
@@ -50,13 +49,5 @@ public class Player {
 
     public void energyChange(){
 
-    }
-
-    public int getX() {
-        return move.x;
-    }
-
-    public int getY(){
-        return move.y;
     }
 }
