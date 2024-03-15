@@ -20,18 +20,19 @@ public class Activity {
         if (!checkValid(day,player)){
             return false;
         }
-       // recheck how this will be implemented
         player.tracker.addActivity(type);
-        //update with actucal Player method
+        //update with actucal Player method still can't find player class
         player.energyUpdate(energyCost);
-        //again check once day found
-        day.timeSkip(timeCost);
+        //increment time- sub par but functional currently it's fine
+        for i in range(0,timeCost){
+             day.nextHour();
+        }
         return true;
      }
 
      boolean checkValid(Day day, Player player){
-        // day and player to be fixed when they exist
-        if ((day.currentHour()-timeCost>=0) && (player.energyCheck()-energyCost>=0)){
+        // player to be fixed when they exist
+        if ((day.checkHour()+timeCost<=24) && (player.energyCheck()-energyCost>=0)){
             return true;
         }
         else{
