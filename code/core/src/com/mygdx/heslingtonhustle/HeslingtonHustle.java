@@ -13,8 +13,6 @@ public class HeslingtonHustle extends Game {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
 		this.setScreen(new MainMenuScreen(this));
-		//playerImg = new Texture("badlogic.jpg");
-		//player = new Player();
 	}
 
 	@Override

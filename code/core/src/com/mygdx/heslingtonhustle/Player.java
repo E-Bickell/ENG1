@@ -59,4 +59,7 @@ public class Player {
     public void energyChange(int amount) {
         energy += amount;
     }
+    public void move(int x, int y){
+        pos.move((int) (pos.getX() + x), (int) (pos.getY() + y));
+    }
 }
