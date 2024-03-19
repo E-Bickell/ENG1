@@ -1,0 +1,28 @@
+@startgantt
+[User Requirements] lasts 10 days
+[Prepare Customer Questions] starts at [User Requirements]'s start and lasts 6 days
+then [Customer Interview] lasts 1 day
+then [Functional Requirements] lasts 3 days
+[Non-Functional Requirements] starts at [Functional Requirements]'s start and lasts 3 days
+then [Architecture] lasts 4 days
+[Method Selection and Planning] starts at [Architecture]'s start and lasts 4 days
+[Risk Assessment] starts at [Architecture]'s start and lasts 4 days
+then [Coding] lasts 14 days
+[Create Website] starts at [Coding]'s start and lasts 1 day
+[Compile Assessment] starts at [Create Website]'s start and lasts 2 days
+[Submit Assessment] starts at [Compile Assessment]'s end
+
+Project starts 2024-02-16
+[User Requirements] starts 2024-02-20
+[Prepare Customer Questions] starts 2024-02-20
+[Customer Interview] starts 2024-02-26
+[Functional Requirements] starts 2024-02-27
+[Non-Functional Requirements] starts 2024-02-27
+[Architecture] starts 2024-03-01
+[Method Selection and Planning] starts 2024-03-01
+[Risk Assessment] starts 2024-03-01
+[Coding] starts 2024-03-05
+[Create Website] starts 2024-03-05
+[Compile Assessment] starts 2024-03-19
+[Submit Assessment] starts 2024-03-21
+@endgantt
