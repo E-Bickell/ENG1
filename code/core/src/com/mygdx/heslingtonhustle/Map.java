@@ -4,9 +4,13 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 import java.awt.*;
 
@@ -16,11 +20,10 @@ public class Map implements Screen {
     Buildings[] buildings;
     final Game game;
     OrthographicCamera camera;
-    Texture tiles;
-    TextureRegion grassTile;
-    TextureRegion pathTile;
     TextureRegion[] playerImg;
     Player player;
+    TiledMap map;
+    OrthogonalTiledMapRenderer renderer;
 
 
     public Map(final HeslingtonHustle gam) {
@@ -30,10 +33,12 @@ public class Map implements Screen {
         buildings = new Buildings[5];
         buildings[0] = new Buildings("test", "library", new Point(3,5), "read");
         buildings[0].addAct();
-        grassTile = new TextureRegion();
-        pathTile = new TextureRegion();
         playerImg = new TextureRegion[8];
         player = new Player();
+
+        map = new TmxMapLoader().load("map/map.tmx");
+        float unitScale = 1 / 16;
+        renderer = new OrthogonalTiledMapRenderer(map, unitScale);
 
 
     }
@@ -45,7 +50,9 @@ public class Map implements Screen {
 
     @Override
     public void render(float v) {
-        updatePlayer();
+        //updatePlayer();
+        renderer.setView(camera);
+        renderer.render();
     }
 
     public void updatePlayer() {
