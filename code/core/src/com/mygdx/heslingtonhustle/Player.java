@@ -6,7 +6,8 @@ public class Player {
     String name;
     int energy;
     int hunger;
-    Point pos;
+    float posX;
+    float posY;
     ActivityTracker tracker;
 
     // initialises Player if no attributes are given
@@ -14,7 +15,8 @@ public class Player {
         name = "TestPerson";
         energy = 10;
         hunger = 10;
-        pos = new Point(0,0);
+        posX = 0;
+        posY = 0;
         tracker = ActivityTracker.getActivityTracker();
     }
 
@@ -23,7 +25,8 @@ public class Player {
         this.name = name;
         this.energy = energy;
         this.hunger = hunger;
-        this.pos = new Point(x, y);
+        this.posX = x;
+        this.posY = y;
         this.tracker = ActivityTracker.getActivityTracker();
     }
 
@@ -60,10 +63,11 @@ public class Player {
         energy += amount;
     }
     public void move(float x, float y){
-        pos.move((int) (pos.getX() + x), (int) (pos.getY() + y));
+        this.posX += x;
+        this.posY += y;
     }
 
-    public int getX(){return (int) pos.getX();}
+    public float getX(){return posX;}
 
-    public int getY(){return (int) pos.getY();}
+    public float getY(){return posY;}
 }
