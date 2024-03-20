@@ -18,11 +18,13 @@ public class Buildings {
     }
 
     public void addAct() {
-        System.out.println("working");
-    }
-    public void interact() {
 
     }
+    public void interact(Player p, Day d) {
+        activity.doActivity(d,p);
+
+    }
+
 
     public String getBuildAct() {
         return activityType;

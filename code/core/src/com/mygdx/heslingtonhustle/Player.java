@@ -32,8 +32,9 @@ public class Player {
 
     // Player interacts with a building
     public void interact(Buildings building, Week week){
-        if (building.activity.checkValid(week.weekDays[week.currentWeekDay],this)){
-            building.interact();
+        Day currentDay = week.weekDays[week.currentWeekDay];
+        if (building.activity.checkValid(currentDay,this)){
+            building.interact(this, currentDay);
         }
     }
 
