@@ -134,11 +134,26 @@ public class Map implements Screen {
         ScreenUtils.clear(0,0,0,0);
         handleInput(v);
 
+        //for camera edges, doesn't work just yet
+        boolean farHorz = player.getX() + camera.viewportWidth/2 + 16/2f <= 700 && player.getX() - camera.viewportWidth/2 >0;
+        boolean farVert = player.getY() + camera.viewportHeight/2 + 16/2f <= 420 && player.getY() - camera.viewportHeight/2 >0;
+        if(farHorz) {
+            camera.position.set(player.getX() + 16/2f, camera.position.y, 0);
+
+        }
+
+        if(farVert) {
+            camera.position.set(camera.position.x, player.getY() + 16/2f, 0);
+        }
+
+        camera.position.set(player.getX() + 16/2f, player.getY() + 16/2f, 0);
         camera.update();
         renderer.setView(camera);
         renderer.render();
 
         batch.begin();
+        //THIS WAS THE ONE LINE FOR THE CAMERA TO BE CENTERED T_T
+        batch.setProjectionMatrix(camera.combined);
         if (hasAnimation) {
             elapsedTime += Gdx.graphics.getDeltaTime();
             TextureAtlas frame = playerAni.getKeyFrame(elapsedTime, true);
@@ -200,6 +215,7 @@ public class Map implements Screen {
         playerSpr = new Sprite(staticSpr[face]);
         hasAnimation = false;
     }
+
 
     @Override
     public void resize(int i, int i1) {
