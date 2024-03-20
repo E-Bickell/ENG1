@@ -3,15 +3,13 @@ package com.mygdx.heslingtonhustle;
 public class Activity {
      String name;
      String type;
-     String description;
      int timeCost;
      int energyCost;
     
 
-     Activity(String activityName,String actvityType, String activityDesc,int time,int energy){
+     Activity(String activityName,String actvityType,int time,int energy){
         name=activityName;
         type=actvityType;
-        description=activityDesc;
           //positive for amount of time takes
         timeCost=time;
           //negitive for how much energy needs to be changed by
@@ -19,7 +17,7 @@ public class Activity {
      }
 
      boolean doActivity(Day day, Player player){
-        if (!checkValid(day,player)){
+        if (!checkValid(day,player)) {
             return false;
         }
         player.tracker.addActivity(type);

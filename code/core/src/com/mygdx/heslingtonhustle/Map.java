@@ -36,6 +36,7 @@ public class Map implements Screen {
     Player player;
     TiledMap map;
     OrthogonalTiledMapRenderer renderer;
+    Button button;
 
 
     //For the arrays, the direction each number represents is:
@@ -53,9 +54,15 @@ public class Map implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
 
-        buildings = new Buildings[5];
-        buildings[0] = new Buildings("test", "library", new Point(3,5), "read");
-        buildings[0].addAct();
+        buildings = new Buildings[4];
+        buildings[0] = new Buildings("Ron Cooke Hub", 3, 5, 100, 100, "study");
+        buildings[0].addAct(new Activity("Study", "Study", 2, 1));
+        buildings[1] = new Buildings("Piazza building", 3, 5, 100, 100, "eat");
+        buildings[1].addAct(new Activity("Eat", "Eat", 1, 2));
+        buildings[2] = new Buildings("Lake", 3, 5, 100, 100, "recreational");
+        buildings[2].addAct(new Activity("Relax by lake", "Recreational", 1, 2));;
+        buildings[3] = new Buildings("Langwith College", 3, 5, 100, 100, "sleep");
+        buildings[3].addAct(new Activity("Sleep", "Sleep", 1, 2));;
         player = new Player();
         batch = new SpriteBatch();
 
