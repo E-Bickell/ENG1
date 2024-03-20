@@ -29,20 +29,13 @@ public class Day {
      */
 
 
-    /*  Assuming checkHour(), endOfDay(), and nextHour() should only be called by the Day object itself, therefore private methods
-        currentHour seems irrelevant right now, maybe useful if we want to display the time of day (not real-world time elapsed)
-     */
-
     public int checkHour() {
 
         return currentHour;
     }
 
 
-    /*  Assuming endOfDay() checks if the day should end (if hours == dayLength, i.e. it is bedtime), therefore returns a boolean.
-        Alternatively endOfDay returns nothing, and merely sets boolean to true, which the Week class must then use a getter to retrieve -
-        in order to check if it should end the current day and call nextDay().
-     */
+
     public boolean endOfDay() {
         if(hours == dayLength) {
             dayEnd = true;
