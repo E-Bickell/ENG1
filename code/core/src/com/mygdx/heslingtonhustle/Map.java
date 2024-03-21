@@ -144,13 +144,13 @@ public class Map implements Screen {
 
         buildings = new Buildings[4];
         buildings[0] = new Buildings("Ron Cooke Hub", 800, 100, rchTexture.getWidth(), rchTexture.getHeight(), "study");
-        buildings[0].addAct(new Activity("Study", "Study", 2, 1));
+        buildings[0].addAct(new Activity("Study", "Study", 2, -1));
         buildings[1] = new Buildings("Piazza building", 900, 700, piazzaTexture.getWidth(), piazzaTexture.getHeight(), "eat");
-        buildings[1].addAct(new Activity("Eat", "Eat", 1, 2));
+        buildings[1].addAct(new Activity("Eat", "Eat", 1, -2));
         buildings[2] = new Buildings("Langwith college", 86, 692, langwithTexture.getWidth(), langwithTexture.getHeight(), "recreational");
-        buildings[2].addAct(new Activity("Relax at Glasshouse", "Recreational", 1, 2));;
+        buildings[2].addAct(new Activity("Relax at Glasshouse", "Recreational", 1, -2));;
         buildings[3] = new Buildings("Goodricke college", 86, 70, goodrickeTexture.getWidth(), goodrickeTexture.getHeight(), "sleep");
-        buildings[3].addAct(new Activity("Sleep", "Sleep", 1, 2));
+        buildings[3].addAct(new Activity("Sleep", "Sleep", 0, 0));
 
         touchPos = new Vector3();
     }
@@ -182,10 +182,17 @@ public class Map implements Screen {
         renderer.setView(camera);
         renderer.render();
 
-        String dayString = "Current day: " + week.currentWeekDay;
-        String hourString = "Current hour: " + week.weekDays[week.currentWeekDay].checkHour();
+        String dayString = "Current day: " + (week.currentWeekDay + 1);
+        String hourString = "Current hour: ";
+        if(!week.endWeek()) {
+            hourString = "Current hour: " + week.weekDays[week.currentWeekDay].checkHour();
+        }
         String energyString = "Current energy: " + player.energyCheck();
         String hungerString = "Current hunger: " + player.hungerCheck();
+        String activitiesDone = "Eaten: " + player.tracker.getNumberOfType("Eat") + "\n" +
+                "Relaxed: " + player.tracker.getNumberOfType("Recreational") + "\n" +
+                "Studied :" + player.tracker.getNumberOfType("Study") + "\n" +
+                "Slept :" + player.tracker.getNumberOfType("Sleep");
 
         batch.begin();
         //THIS WAS THE ONE LINE FOR THE CAMERA TO BE CENTERED T_T
@@ -201,6 +208,7 @@ public class Map implements Screen {
         }
         playerSpr.setPosition(player.getX(), player.getY());
         playerSpr.draw(batch);
+
         batch.end();
 
         guiBatch.begin();
@@ -208,6 +216,7 @@ public class Map implements Screen {
         font.draw(guiBatch, hourString, 0,365);
         font.draw(guiBatch, energyString, 0,340);
         font.draw(guiBatch, hungerString, 0,315);
+        font.draw(guiBatch, activitiesDone, 715,390);
         guiBatch.end();
     }
 
@@ -254,31 +263,14 @@ public class Map implements Screen {
             face = 2;
             //hasAnimation = true;
         }
-        //Using these keys temporarily to test interactions of sleep, eat, etc
-        else if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)){
-            buildings[0].getBuildAct().doActivity(week, player);
-        }
-        else if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)){
-            buildings[1].getBuildAct().doActivity(week, player);
-            //System.out.println(player.hungerCheck());
-        }
-        else if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)){
-            buildings[2].getBuildAct().doActivity(week, player);
-        }
-        else if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)){
-            buildings[3].getBuildAct().doActivity(week, player);
-            //System.out.println(week.currentWeekDay);
-            if(week.endWeek()) {
-                game.setScreen(new EndScreen(game));
-            }
-        }
 
-        if (Gdx.input.isTouched()){
+        if (Gdx.input.justTouched()){
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             camera.unproject(touchPos);
             if (touchPos.x > buildings[0].xStart && touchPos.x < buildings[0].xStart + buildings[0].width){
                 if (touchPos.y > buildings[0].yStart && touchPos.y < buildings[0].yStart + buildings[0].height){
                     player.interact(buildings[0], week);
+
                 }
             }
             if (touchPos.x > buildings[1].xStart && touchPos.x < buildings[1].xStart + buildings[1].width){
@@ -288,12 +280,17 @@ public class Map implements Screen {
             }
             if (touchPos.x > buildings[2].xStart && touchPos.x < buildings[2].xStart + buildings[2].width){
                 if (touchPos.y > buildings[2].yStart && touchPos.y < buildings[2].yStart + buildings[2].height){
-                    player.interact(buildings[2], week);
+                    player.interact(buildings[2], week);;
                 }
             }
             if (touchPos.x > buildings[3].xStart && touchPos.x < buildings[3].xStart + buildings[3].width){
                 if (touchPos.y > buildings[3].yStart && touchPos.y < buildings[3].yStart + buildings[3].height){
                     player.interact(buildings[3], week);
+                    if(week.endWeek()) {
+                        game.setScreen(new EndScreen(game, player.getScore()));
+                        this.dispose();
+                    }
+
                 }
             }
         }
@@ -301,6 +298,7 @@ public class Map implements Screen {
         playerSpr = new Sprite(staticSpr[face]);
         hasAnimation = false;
     }
+
 
 
     @Override

@@ -9,10 +9,10 @@ public class ActivityTracker {
     Dictionary<String, Integer> done= new Hashtable<>();
 
     public ActivityTracker(){
-        done.put("eat",0);
-        done.put("fun",0);
-        done.put("study",0);
-        done.put("sleep",0);
+        done.put("Eat",0);
+        done.put("Recreational",0);
+        done.put("Study",0);
+        done.put("Sleep",0);
 
     }
     public static ActivityTracker getActivityTracker(){

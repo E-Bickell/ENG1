@@ -9,11 +9,14 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class EndScreen implements Screen {
     final HeslingtonHustle game;
     OrthographicCamera camera;
-
-    public EndScreen(final HeslingtonHustle game) {
+    int finalScore = 100;
+    public EndScreen(final HeslingtonHustle game, int score) {
         this.game = game;
-
+        if(score < 100) {
+            finalScore = score;
+        }
         camera = new OrthographicCamera();
+
         camera.setToOrtho(false, 800, 400);
     }
 
@@ -30,7 +33,7 @@ public class EndScreen implements Screen {
 
         game.batch.begin();
         game.font.draw(game.batch, "Game Complete", 100, 150);
-        game.font.draw(game.batch, "Exam results: ", 100, 100);
+        game.font.draw(game.batch, "Exam results: " + finalScore, 100, 100);
         game.batch.end();
 
     }

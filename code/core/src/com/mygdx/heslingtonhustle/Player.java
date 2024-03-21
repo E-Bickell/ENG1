@@ -9,14 +9,16 @@ public class Player {
     float posX;
     float posY;
     ActivityTracker tracker;
+    int score;
 
     // initialises Player if no attributes are given
     public Player() {
         name = "TestPerson";
         energy = 10;
         hunger = 10;
-        posX = 0;
-        posY = 0;
+        posX = 400;
+        posY = 240;
+        score = 0;
         tracker = ActivityTracker.getActivityTracker();
 
     }
@@ -41,14 +43,12 @@ public class Player {
 
     // Player eats
     public void eat(){
-        hunger += 10;
-        tracker.addActivity("eat");
+        hunger += 5;
     }
 
     // Player sleeps
     public void sleep(Week week) {
         energy += 10;
-        tracker.addActivity("sleep");
         week.nextDay();
         resetPlayer();
     }
@@ -65,6 +65,15 @@ public class Player {
     public void energyChange(int amount) {
         energy += amount;
     }
+
+    public void scoreChange(int amount) {
+        score += amount;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
     public void move(float x, float y){
         this.posX += x;
         this.posY += y;
@@ -77,8 +86,9 @@ public class Player {
     public void resetPlayer() {
         energy = 10;
         hunger = 10;
-        posX = 0;
-        posY = 0;
+        posX = 400;
+        posY = 240;
 
     }
+
 }

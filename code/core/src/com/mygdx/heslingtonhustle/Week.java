@@ -28,7 +28,7 @@ public class Week {
 
     //Assuming checkWeek() is used to get the number of days left in the week before the end of the game?
     public int checkWeek(){
-        daysLeft = weekLength - (currentWeekDay+1);
+        daysLeft = weekLength - (currentWeekDay);
         return daysLeft;
     }
 

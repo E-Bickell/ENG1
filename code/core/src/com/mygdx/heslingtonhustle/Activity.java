@@ -7,12 +7,12 @@ public class Activity {
      int energyCost;
     
 
-     public Activity(String activityName,String actvityType,int time,int energy){
+     public Activity(String activityName,String activityType,int time,int energy){
         name=activityName;
-        type=actvityType;
+        type=activityType;
           //positive for amount of time takes
         timeCost=time;
-          //negitive for how much energy needs to be changed by
+          //negative for how much energy needs to be changed by
         energyCost=energy;
      }
 
@@ -30,18 +30,17 @@ public class Activity {
             player.eat();
         }
         else if(type.equals("Recreational")) {
-            //Score functions
+            player.scoreChange(2);
         }
         else if(type.equals("Study")) {
-            //score functions
+            player.scoreChange(5);
         }
-        //player.tracker.addActivity(type);
-        player.energyChange(energyCost);
+        player.tracker.addActivity(type);
         return true;
      }
 
      boolean checkValid(Day day, Player player){
-        if ((day.checkHour()+timeCost<=16) && (player.energyCheck()-energyCost>=0)){
+        if ((day.checkHour()+timeCost<=24) && (player.energyCheck()+energyCost>=0)){
             return true;
         }
         else{
