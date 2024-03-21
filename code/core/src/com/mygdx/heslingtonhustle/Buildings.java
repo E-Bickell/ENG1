@@ -24,13 +24,14 @@ public class Buildings {
     public void addAct(Activity activity) {
         this.activity = activity;
     }
-    public void interact(Player p, Day d) {
-        activity.doActivity(d,p);
+    public void interact(Player p, Week w) {
+        activity.doActivity(w,p);
 
     }
 
 
-    public String getBuildAct() {
-        return activityType;
+    public Activity getBuildAct() {
+        return activity;
     }
+
 }

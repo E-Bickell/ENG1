@@ -8,7 +8,7 @@ public class ActivityTracker {
     private static ActivityTracker tracker;
     Dictionary<String, Integer> done= new Hashtable<>();
 
-    private ActivityTracker(){
+    public ActivityTracker(){
         done.put("eat",0);
         done.put("fun",0);
         done.put("study",0);

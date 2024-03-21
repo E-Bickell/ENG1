@@ -7,7 +7,7 @@ public class Activity {
      int energyCost;
     
 
-     Activity(String activityName,String actvityType,int time,int energy){
+     public Activity(String activityName,String actvityType,int time,int energy){
         name=activityName;
         type=actvityType;
           //positive for amount of time takes
@@ -16,19 +16,27 @@ public class Activity {
         energyCost=energy;
      }
 
-     boolean doActivity(Day day, Player player){
+     public boolean doActivity(Week week, Player player) {
+        Day day = week.getCurrentWeekDay();
         if (!checkValid(day,player)) {
             return false;
         }
-        if (type=="sleep"){
-             player.week.nextDay();
-        }
-        player.tracker.addActivity(type);
+        day.nextHour(timeCost);
         player.energyChange(energyCost);
-        //increment time- sub par but functional currently it's fine
-        for (int i = 0; i < timeCost; i++){
-             day.nextHour();
+        if (type.equals("Sleep")){
+            player.sleep(week);
         }
+        else if(type.equals("Eat")) {
+            player.eat();
+        }
+        else if(type.equals("Recreational")) {
+            //Score functions
+        }
+        else if(type.equals("Study")) {
+            //score functions
+        }
+        //player.tracker.addActivity(type);
+        player.energyChange(energyCost);
         return true;
      }
 

@@ -36,6 +36,7 @@ public class Week {
     public boolean endWeek() {
         if(checkWeek() == 0) {
             weekEnd = true;
+
         }
         return weekEnd;
     }
@@ -53,6 +54,10 @@ public class Week {
         else {
             System.out.println("Cannot increase weekDay, week has ended");
         }
+    }
+
+    public Day getCurrentWeekDay() {
+        return weekDays[currentWeekDay];
     }
 
 }

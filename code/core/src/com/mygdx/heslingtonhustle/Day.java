@@ -49,12 +49,10 @@ public class Day {
         for nextHour() to use a getter from Activity object to get the timeCost and take it as a parameter to add that to
         currentHour
      */
-    public void nextHour() {
-        currentHour += 1;
-        hours += 1;
-        //currentHour += 'Activity'.getTimeCost();
-        //hours += 'Activity'.getTimeCost();
-        //why not just let activity pass timeCost to the funciton
+    public void nextHour(int timeCost) {
+        currentHour += timeCost;
+        hours += timeCost;
+
     }
 
     //Returns how many hours are left, useful if for example an activity takes 2 hours, but only 1 hour is left until sleep

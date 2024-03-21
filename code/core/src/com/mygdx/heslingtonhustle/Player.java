@@ -9,7 +9,6 @@ public class Player {
     float posX;
     float posY;
     ActivityTracker tracker;
-    Week week;
 
     // initialises Player if no attributes are given
     public Player() {
@@ -19,7 +18,7 @@ public class Player {
         posX = 0;
         posY = 0;
         tracker = ActivityTracker.getActivityTracker();
-        this.week= new Week();
+
     }
 
     // initialises Player if attributes are given
@@ -30,14 +29,13 @@ public class Player {
         this.posX = x;
         this.posY = y;
         this.tracker = ActivityTracker.getActivityTracker();
-        this.week=new  Week();
     }
 
     // Player interacts with a building
     public void interact(Buildings building, Week week){
         Day currentDay = week.weekDays[week.currentWeekDay];
         if (building.activity.checkValid(currentDay,this)){
-            building.interact(this, currentDay);
+            building.interact(this, week);
         }
     }
 
@@ -52,6 +50,7 @@ public class Player {
         energy += 10;
         tracker.addActivity("sleep");
         week.nextDay();
+        resetPlayer();
     }
 
     // Returns how much energy the player currently has
@@ -74,4 +73,12 @@ public class Player {
     public float getX(){return posX;}
 
     public float getY(){return posY;}
+
+    public void resetPlayer() {
+        energy = 10;
+        hunger = 10;
+        posX = 0;
+        posY = 0;
+
+    }
 }

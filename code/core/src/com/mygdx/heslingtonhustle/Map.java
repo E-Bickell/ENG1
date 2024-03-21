@@ -22,7 +22,7 @@ public class Map implements Screen {
     private float elapsedTime = 0;
     int face;
     Buildings[] buildings;
-    final Game game;
+    final HeslingtonHustle game;
     TextureAtlas[] textures;
     Texture[] staticTextures;
     Sprite[] sprites;
@@ -37,7 +37,7 @@ public class Map implements Screen {
     TiledMap map;
     OrthogonalTiledMapRenderer renderer;
     Button button;
-
+    Week week;
 
     //For the arrays, the direction each number represents is:
     //0: North
@@ -53,7 +53,7 @@ public class Map implements Screen {
         face = 0;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
-
+        week = new Week();
         buildings = new Buildings[4];
         buildings[0] = new Buildings("Ron Cooke Hub", 3, 5, 100, 100, "study");
         buildings[0].addAct(new Activity("Study", "Study", 2, 1));
@@ -214,7 +214,26 @@ public class Map implements Screen {
             //playerAni = new Animation<>(1/5f, animations[6].getKeyFrames());;
             face = 2;
             //hasAnimation = true;
-        }// else {
+        }
+        //Using these keys temporarily to test interactions of sleep, eat, etc
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)){
+            buildings[0].getBuildAct().doActivity(week, player);
+        }
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)){
+            buildings[1].getBuildAct().doActivity(week, player);
+            //System.out.println(player.hungerCheck());
+        }
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)){
+            buildings[2].getBuildAct().doActivity(week, player);
+        }
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)){
+            buildings[3].getBuildAct().doActivity(week, player);
+            //System.out.println(week.currentWeekDay);
+            if(week.endWeek()) {
+                game.setScreen(new EndScreen(game));
+            }
+        }
+        // else {
             //playerSpr = new Sprite(staticSpr[face]);
             //hasAnimation = false;
         //}
@@ -222,6 +241,7 @@ public class Map implements Screen {
         playerSpr = new Sprite(staticSpr[face]);
         hasAnimation = false;
     }
+
 
 
     @Override
