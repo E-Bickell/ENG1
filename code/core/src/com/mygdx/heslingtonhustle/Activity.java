@@ -20,6 +20,9 @@ public class Activity {
         if (!checkValid(day,player)) {
             return false;
         }
+        if (type=="sleep"){
+             player.week.nextDay();
+        }
         player.tracker.addActivity(type);
         player.energyChange(energyCost);
         //increment time- sub par but functional currently it's fine

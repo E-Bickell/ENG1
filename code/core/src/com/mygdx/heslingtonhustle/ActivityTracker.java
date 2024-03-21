@@ -29,4 +29,7 @@ public class ActivityTracker {
     protected int getNumberOfType(String type){
         return(done.get(type));
     }
+    Dictionary<String, Integer> getDone(){
+        return(done);
+    }
 }
