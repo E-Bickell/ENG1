@@ -19,7 +19,7 @@ public class Day {
      */
     public Day() {
         hours = 0;
-        currentHour = 0;
+        currentHour = 8;
         dayEnd = false;
         hoursLeft = dayLength;
     }

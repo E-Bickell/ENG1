@@ -61,10 +61,10 @@ public class Activity {
      * Checks if the activity can be performed by the player
      * @param day
      * @param player
-     * @return true if player has enough energy and time remaining, false otherwise
+     * @return true if player has enough energy, hunger and time remaining, false otherwise
      */
      boolean checkValid(Day day, Player player){
-        if ((day.checkHour()+timeCost<=24) && (player.energyCheck()+energyCost>=0)){
+        if ((day.checkHour()+timeCost<=24) && (player.energyCheck()+energyCost>=0) && (player.hungerCheck() - timeCost> 0)){
             return true;
         }
         else{

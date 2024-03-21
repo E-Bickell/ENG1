@@ -120,7 +120,7 @@ public class Map implements Screen {
         buildings[0] = new Buildings("Ron Cooke Hub", 800, 100, rchTexture.getWidth(), rchTexture.getHeight(), "study");
         buildings[0].addAct(new Activity("Study", "Study", 4, -3));
         buildings[1] = new Buildings("Piazza building", 900, 700, piazzaTexture.getWidth(), piazzaTexture.getHeight(), "eat");
-        buildings[1].addAct(new Activity("Eat", "Eat", 1, -1));
+        buildings[1].addAct(new Activity("Eat", "Eat", 1, 1));
         buildings[2] = new Buildings("Langwith college", 86, 692, langwithTexture.getWidth(), langwithTexture.getHeight(), "recreational");
         buildings[2].addAct(new Activity("Relax at Glasshouse", "Recreational", 3, -2));;
         buildings[3] = new Buildings("Goodricke college", 86, 70, goodrickeTexture.getWidth(), goodrickeTexture.getHeight(), "sleep");
@@ -159,7 +159,7 @@ public class Map implements Screen {
         String dayString = "Current day: " + (week.currentWeekDay + 1);
         String hourString = "Current hour: ";
         if(!week.endWeek()) {
-            hourString = "Current hour: " + week.weekDays[week.currentWeekDay].checkHour();
+            hourString = "Current hour: " + week.weekDays[week.currentWeekDay].checkHour() + ":00";
         }
         String energyString = "Current energy: " + player.energyCheck();
         String hungerString = "Current hunger: " + player.hungerCheck();

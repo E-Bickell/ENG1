@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="447fab5c-d2a9-4207-ad5f-d0aaee162c13" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/code/core/src/com/mygdx/heslingtonhustle/HowToPlayScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/core/src/com/mygdx/heslingtonhustle/Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/code/core/src/com/mygdx/heslingtonhustle/Activity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/core/src/com/mygdx/heslingtonhustle/Day.java" beforeDir="false" afterPath="$PROJECT_DIR$/code/core/src/com/mygdx/heslingtonhustle/Day.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/core/src/com/mygdx/heslingtonhustle/MainMenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/code/core/src/com/mygdx/heslingtonhustle/MainMenuScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/core/src/com/mygdx/heslingtonhustle/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/code/core/src/com/mygdx/heslingtonhustle/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/core/src/com/mygdx/heslingtonhustle/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/code/core/src/com/mygdx/heslingtonhustle/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +149,7 @@
       <workItem from="1710976750861" duration="4831000" />
       <workItem from="1710981609620" duration="1962000" />
       <workItem from="1710984593583" duration="3000" />
-      <workItem from="1711006558590" duration="2775000" />
+      <workItem from="1711006558590" duration="3199000" />
     </task>
     <servers />
   </component>
