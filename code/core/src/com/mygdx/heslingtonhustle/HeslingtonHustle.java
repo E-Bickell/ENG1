@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class HeslingtonHustle extends Game {
+	public static final int WIDTH = 800;
+	public static final int HEIGHT = 400;
 	public SpriteBatch batch;
 	public BitmapFont font;
 
