@@ -79,33 +79,32 @@ public class Map implements Screen {
         staticTextures = new Texture[8];
         staticSpr = new Sprite[8];
 
-        staticTextures[0] = new Texture("char_animate/static_n.png");
+        staticTextures[0] = new Texture(Gdx.files.internal("char_animate/static_n.png"));
         staticSpr[0] = new Sprite(staticTextures[0]);
 
-        staticTextures[1] = new Texture("char_animate/static_ne.png");
+        staticTextures[1] = new Texture(Gdx.files.internal("char_animate/static_ne.png"));
         staticSpr[1] = new Sprite(staticTextures[1]);
 
-        staticTextures[2] = new Texture("char_animate/static_e.png");
+        staticTextures[2] = new Texture(Gdx.files.internal("char_animate/static_e.png"));
         staticSpr[2] = new Sprite(staticTextures[2]);
 
-        staticTextures[3] = new Texture("char_animate/static_se.png");
+        staticTextures[3] = new Texture(Gdx.files.internal("char_animate/static_se.png"));
         staticSpr[3] = new Sprite(staticTextures[3]);
 
-        staticTextures[4] = new Texture("char_animate/static_s.png");
+        staticTextures[4] = new Texture(Gdx.files.internal("char_animate/static_s.png"));
         staticSpr[4] = new Sprite(staticTextures[4]);
 
-        staticTextures[5] = new Texture("char_animate/static_sw.png");
+        staticTextures[5] = new Texture(Gdx.files.internal("char_animate/static_sw.png"));
         staticSpr[5] = new Sprite(staticTextures[5]);
 
-        staticTextures[6] = new Texture("char_animate/static_w.png");
+        staticTextures[6] = new Texture(Gdx.files.internal("char_animate/static_w.png"));
         staticSpr[6] = new Sprite(staticTextures[6]);
 
-        staticTextures[7] = new Texture("char_animate/static_nw.png");
+        staticTextures[7] = new Texture(Gdx.files.internal("char_animate/static_nw.png"));
         staticSpr[7] = new Sprite(staticTextures[7]);
 
         playerSpr = new Sprite(staticSpr[0]);
 
-        System.out.println("open map screen");
         map = new TmxMapLoader().load("map/map.tmx");
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();

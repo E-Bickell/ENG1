@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="impl1:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="447fab5c-d2a9-4207-ad5f-d0aaee162c13" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/core/src/com/mygdx/heslingtonhustle/Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/code/core/src/com/mygdx/heslingtonhustle/Activity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/core/src/com/mygdx/heslingtonhustle/Day.java" beforeDir="false" afterPath="$PROJECT_DIR$/code/core/src/com/mygdx/heslingtonhustle/Day.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/core/src/com/mygdx/heslingtonhustle/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/code/core/src/com/mygdx/heslingtonhustle/Map.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -83,16 +87,22 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Gradle.Build code.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.code:desktop [run].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Starw/Documents/GitHub/ENG1&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -128,6 +138,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
+        <option value="jdk-11.0.22-corretto-11.0.22-4caba194b151-868cef46" />
         <option value="jdk-19.0.2-corretto-19.0.2-4caba194b151-48ba4555" />
       </set>
     </attachedChunks>
@@ -149,7 +160,10 @@
       <workItem from="1710976750861" duration="4831000" />
       <workItem from="1710981609620" duration="1962000" />
       <workItem from="1710984593583" duration="3000" />
-      <workItem from="1711006558590" duration="3199000" />
+      <workItem from="1711006558590" duration="4358000" />
+      <workItem from="1711011013678" duration="8000" />
+      <workItem from="1711011026475" duration="478000" />
+      <workItem from="1711015055273" duration="1381000" />
     </task>
     <servers />
   </component>
