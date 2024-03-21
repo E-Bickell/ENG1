@@ -5,13 +5,19 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import java.awt.*;
 
@@ -20,6 +26,8 @@ public class Map implements Screen {
     public static final float SPEED = 100f;
     private static final float SCREEN_WIDTH = Gdx.graphics.getWidth();
     private float elapsedTime = 0;
+    public BitmapFont font;
+    Week week;
     int face;
     Buildings[] buildings;
     final HeslingtonHustle game;
@@ -32,12 +40,16 @@ public class Map implements Screen {
     Animation<TextureAtlas> playerAni;
     boolean hasAnimation;
     SpriteBatch batch;
+    SpriteBatch guiBatch;
     OrthographicCamera camera;
     Player player;
     TiledMap map;
     OrthogonalTiledMapRenderer renderer;
-    Button button;
-    Week week;
+    Texture rchTexture;
+    Texture piazzaTexture;
+    Texture goodrickeTexture;
+    Texture langwithTexture;
+    Vector3 touchPos;
 
     //For the arrays, the direction each number represents is:
     //0: North
@@ -49,22 +61,17 @@ public class Map implements Screen {
     //6: West
     //7: NW
     public Map(final HeslingtonHustle gam) {
+        font = new BitmapFont();
+        font.setColor(Color.RED);
+        week = new Week();
         game = gam;
         face = 0;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
-        week = new Week();
-        buildings = new Buildings[4];
-        buildings[0] = new Buildings("Ron Cooke Hub", 3, 5, 100, 100, "study");
-        buildings[0].addAct(new Activity("Study", "Study", 2, 1));
-        buildings[1] = new Buildings("Piazza building", 3, 5, 100, 100, "eat");
-        buildings[1].addAct(new Activity("Eat", "Eat", 1, 2));
-        buildings[2] = new Buildings("Lake", 3, 5, 100, 100, "recreational");
-        buildings[2].addAct(new Activity("Relax by lake", "Recreational", 1, 2));;
-        buildings[3] = new Buildings("Langwith College", 3, 5, 100, 100, "sleep");
-        buildings[3].addAct(new Activity("Sleep", "Sleep", 1, 2));;
+
         player = new Player();
         batch = new SpriteBatch();
+        guiBatch = new SpriteBatch();
 
         textures = new TextureAtlas[8];
         sprites = new Sprite[8];
@@ -129,6 +136,23 @@ public class Map implements Screen {
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
         renderer = new OrthogonalTiledMapRenderer(map, 4*SCREEN_WIDTH/(map.getProperties().get("width",Integer.class)*32f));
+
+        rchTexture = new Texture(Gdx.files.internal("map/ron-cooke-hub.jpeg"));
+        piazzaTexture = new Texture(Gdx.files.internal("map/piazza-building.jpeg"));
+        goodrickeTexture = new Texture(Gdx.files.internal("map/goodricke-college.jpeg"));
+        langwithTexture = new Texture(Gdx.files.internal("map/the-glasshouse.jpg"));
+
+        buildings = new Buildings[4];
+        buildings[0] = new Buildings("Ron Cooke Hub", 800, 100, rchTexture.getWidth(), rchTexture.getHeight(), "study");
+        buildings[0].addAct(new Activity("Study", "Study", 2, 1));
+        buildings[1] = new Buildings("Piazza building", 900, 700, piazzaTexture.getWidth(), piazzaTexture.getHeight(), "eat");
+        buildings[1].addAct(new Activity("Eat", "Eat", 1, 2));
+        buildings[2] = new Buildings("Langwith college", 86, 692, langwithTexture.getWidth(), langwithTexture.getHeight(), "recreational");
+        buildings[2].addAct(new Activity("Relax at Glasshouse", "Recreational", 1, 2));;
+        buildings[3] = new Buildings("Goodricke college", 86, 70, goodrickeTexture.getWidth(), goodrickeTexture.getHeight(), "sleep");
+        buildings[3].addAct(new Activity("Sleep", "Sleep", 1, 2));
+
+        touchPos = new Vector3();
     }
 
     @Override
@@ -158,9 +182,18 @@ public class Map implements Screen {
         renderer.setView(camera);
         renderer.render();
 
+        String dayString = "Current day: " + week.currentWeekDay;
+        String hourString = "Current hour: " + week.weekDays[week.currentWeekDay].checkHour();
+        String energyString = "Current energy: " + player.energyCheck();
+        String hungerString = "Current hunger: " + player.hungerCheck();
+
         batch.begin();
         //THIS WAS THE ONE LINE FOR THE CAMERA TO BE CENTERED T_T
         batch.setProjectionMatrix(camera.combined);
+        batch.draw(rchTexture, buildings[0].xStart, buildings[0].yStart);
+        batch.draw(piazzaTexture, buildings[1].xStart, buildings[1].yStart);
+        batch.draw(langwithTexture, buildings[2].xStart, buildings[2].yStart);
+        batch.draw(goodrickeTexture, buildings[3].xStart, buildings[3].yStart);
         if (hasAnimation) {
             elapsedTime += Gdx.graphics.getDeltaTime();
             TextureAtlas frame = playerAni.getKeyFrame(elapsedTime, true);
@@ -168,8 +201,14 @@ public class Map implements Screen {
         }
         playerSpr.setPosition(player.getX(), player.getY());
         playerSpr.draw(batch);
-
         batch.end();
+
+        guiBatch.begin();
+        font.draw(guiBatch, dayString, 0,390);
+        font.draw(guiBatch, hourString, 0,365);
+        font.draw(guiBatch, energyString, 0,340);
+        font.draw(guiBatch, hungerString, 0,315);
+        guiBatch.end();
     }
 
     public void handleInput(float v) {
@@ -233,15 +272,35 @@ public class Map implements Screen {
                 game.setScreen(new EndScreen(game));
             }
         }
-        // else {
-            //playerSpr = new Sprite(staticSpr[face]);
-            //hasAnimation = false;
-        //}
-        //camera.position.x += (float) ((player.getX() - camera.position.x) * 0.5 * v);
+
+        if (Gdx.input.isTouched()){
+            touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            camera.unproject(touchPos);
+            if (touchPos.x > buildings[0].xStart && touchPos.x < buildings[0].xStart + buildings[0].width){
+                if (touchPos.y > buildings[0].yStart && touchPos.y < buildings[0].yStart + buildings[0].height){
+                    player.interact(buildings[0], week);
+                }
+            }
+            if (touchPos.x > buildings[1].xStart && touchPos.x < buildings[1].xStart + buildings[1].width){
+                if (touchPos.y > buildings[1].yStart && touchPos.y < buildings[1].yStart + buildings[1].height){
+                    player.interact(buildings[1], week);
+                }
+            }
+            if (touchPos.x > buildings[2].xStart && touchPos.x < buildings[2].xStart + buildings[2].width){
+                if (touchPos.y > buildings[2].yStart && touchPos.y < buildings[2].yStart + buildings[2].height){
+                    player.interact(buildings[2], week);
+                }
+            }
+            if (touchPos.x > buildings[3].xStart && touchPos.x < buildings[3].xStart + buildings[3].width){
+                if (touchPos.y > buildings[3].yStart && touchPos.y < buildings[3].yStart + buildings[3].height){
+                    player.interact(buildings[3], week);
+                }
+            }
+        }
+
         playerSpr = new Sprite(staticSpr[face]);
         hasAnimation = false;
     }
-
 
 
     @Override
@@ -266,11 +325,17 @@ public class Map implements Screen {
 
     @Override
     public void dispose() {
+        guiBatch.dispose();
         batch.dispose();
+        font.dispose();
         map.dispose();
         for (int i = 0; i < textures.length; i++){
             textures[i].dispose();
             staticTextures[i].dispose();
         }
+        rchTexture.dispose();
+        piazzaTexture.dispose();
+        langwithTexture.dispose();
+        goodrickeTexture.dispose();
     }
 }
