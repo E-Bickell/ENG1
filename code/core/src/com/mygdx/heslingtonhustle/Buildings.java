@@ -1,7 +1,8 @@
 package com.mygdx.heslingtonhustle;
 
-import java.awt.Point;
-
+/**
+ * Represents a building containing an activity
+ */
 public class Buildings {
     String name;
     float xStart;
@@ -11,6 +12,15 @@ public class Buildings {
     String activityType;
     Activity activity;
 
+    /**
+     * Creates a new building object
+     * @param buildingName
+     * @param x x position of building
+     * @param y y position of building
+     * @param width of building
+     * @param height of building
+     * @param buildingActivity type of activity offered
+     */
     public Buildings(String buildingName, float x, float y, float width, float height, String buildingActivity) {
         name = buildingName;
         xStart = x;
@@ -21,17 +31,21 @@ public class Buildings {
 
     }
 
+    /**
+     * Sets this Building's Activity to the Activity passed
+     * @param activity new Activity
+     */
     public void addAct(Activity activity) {
         this.activity = activity;
     }
+
+    /**
+     * Calls doActivity
+     * @param p the Player
+     * @param w the Week
+     */
     public void interact(Player p, Week w) {
         activity.doActivity(w,p);
 
     }
-
-
-    public Activity getBuildAct() {
-        return activity;
-    }
-
 }

@@ -6,10 +6,17 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+/**
+ * Represents the start menu screen of the game
+ */
 public class MainMenuScreen implements Screen {
     final HeslingtonHustle game;
     OrthographicCamera camera;
 
+    /**
+     * Creates an instance of the MainMenuScreen
+     * @param game HeslingtonHustle game
+     */
     public MainMenuScreen(final HeslingtonHustle game) {
         this.game = game;
 
@@ -22,6 +29,7 @@ public class MainMenuScreen implements Screen {
 
     }
 
+    @Override
     public void render(float delta) {
         ScreenUtils.clear(0,0,0.2f,1);
 

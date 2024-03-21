@@ -1,10 +1,8 @@
 package com.mygdx.heslingtonhustle;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,14 +11,12 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import java.awt.*;
 
+/**
+ * Represents the map of the Game on which the game is rendered and played
+ */
 public class Map implements Screen {
 
     public static final float SPEED = 100f;
@@ -51,6 +47,10 @@ public class Map implements Screen {
     Texture langwithTexture;
     Vector3 touchPos;
 
+    /**
+     * Creates an instance of the Map
+     * @param gam HeslingtonHustle game
+     */
     //For the arrays, the direction each number represents is:
     //0: North
     //1: NE
@@ -220,6 +220,10 @@ public class Map implements Screen {
         guiBatch.end();
     }
 
+    /**
+     * Handles inputs from the user
+     * @param v
+     */
     public void handleInput(float v) {
         float change = Gdx.graphics.getDeltaTime()*SPEED;
         if(Gdx.input.isKeyPressed(Input.Keys.W) && Gdx.input.isKeyPressed(Input.Keys.A)){

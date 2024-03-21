@@ -1,15 +1,22 @@
 package com.mygdx.heslingtonhustle;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+/**
+ * Represents the final screen of the game
+ */
 public class EndScreen implements Screen {
     final HeslingtonHustle game;
     OrthographicCamera camera;
     int finalScore = 100;
+
+    /**
+     * Creates an instance of the EndScreen
+     * @param game HeslingtonHustle game
+     * @param score final score achieved by the player
+     */
     public EndScreen(final HeslingtonHustle game, int score) {
         this.game = game;
         if(score < 100) {
@@ -24,7 +31,7 @@ public class EndScreen implements Screen {
     public void show() {
 
     }
-
+    @Override
     public void render(float delta) {
         ScreenUtils.clear(0,0,0.2f,1);
 

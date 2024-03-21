@@ -1,23 +1,24 @@
 package com.mygdx.heslingtonhustle;
 
+/**
+ * Represents a week in the game containing seven days
+ */
 public class Week {
     int currentWeekDay;
     Day[] weekDays;
     final int weekLength = 7;
     boolean weekEnd;
     int daysLeft;
-    Time time; //Read Time() comment in Time Class
 
     /**
-     * Constructor method
+     * Creates an instance of a Week which creates 7 Days
      */
-    //Assuming currentWeekDay keeps track of the day with int 0-6 for use with the weekDays array
     public Week() {
+        //Assuming currentWeekDay keeps track of the day with int 0-6 for use with the weekDays array
         currentWeekDay = 0;
         weekEnd = false;
         daysLeft = weekLength;
         weekDays = new Day[weekLength];
-        //time = new Time();
 
         for(int i=0; i<weekLength; i++)
         {
@@ -25,14 +26,19 @@ public class Week {
         }
     }
 
-
-    //Assuming checkWeek() is used to get the number of days left in the week before the end of the game?
+    /**
+     * Returns how many days are left in the Week
+     */
+    //Assuming checkWeek() is used to get the number of days left in the week before the end of the game
     public int checkWeek(){
         daysLeft = weekLength - (currentWeekDay);
         return daysLeft;
     }
 
-
+    /**
+     * Returns true if the week has finished
+     * @return weekEnd which is false by default
+     */
     public boolean endWeek() {
         if(checkWeek() == 0) {
             weekEnd = true;
@@ -41,21 +47,19 @@ public class Week {
         return weekEnd;
     }
 
-
-    /*  Not sure what the difference between nextDay() and addDay() was meant to be, presumably it was to add the day
-        to a weekDays arrayList but as the weekLength is set from the start, it makes more sense to just create the array
-        of size weekLength(7), and use a loop to create all the days at once, as they should be independently accessed.
-        Creating all the days at the start and storing them should not be an issue for performance.
+    /**
+     * If the week has not ended, changes the currentWeekDay to the next one
      */
     public void nextDay() {
         if(!endWeek()) {
             currentWeekDay += 1;
         }
-        else {
-            System.out.println("Cannot increase weekDay, week has ended");
-        }
     }
 
+    /**
+     * Returns the current Day in the Week
+     * @return the instance of Day referenced by the currentWeekDay counter
+     */
     public Day getCurrentWeekDay() {
         return weekDays[currentWeekDay];
     }
