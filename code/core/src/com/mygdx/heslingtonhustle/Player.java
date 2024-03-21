@@ -100,6 +100,8 @@ public class Player {
         energy += amount;
     }
 
+    public void hungerChange(int amount){hunger -= amount;}
+
     /**
      * Changes the Player score by the amount passed
      * @param amount amount to change score by

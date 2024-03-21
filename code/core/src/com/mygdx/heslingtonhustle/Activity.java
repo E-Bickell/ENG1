@@ -50,6 +50,9 @@ public class Activity {
         else if(type.equals("Study")) {
             player.scoreChange(5);
         }
+        if (!type.equals("Eat")){
+            player.hungerChange(timeCost);
+        }
         player.tracker.addActivity(type);
         return true;
      }
